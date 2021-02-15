@@ -19,7 +19,8 @@ import java.util.List;
 @Service
 public class CoronaVirusDataService {
 
-    public String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv";
+//    public String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv";
+    public String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv";
     private List<LocationStats> allStats = new ArrayList<>();
 
     public List<LocationStats> getAllStats() {
@@ -35,16 +36,17 @@ public class CoronaVirusDataService {
                 .uri(URI.create(VIRUS_DATA_URL))
                 .build();
         HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
-//        System.out.println(httpResponse.body());
 
         StringReader csvBodyReader = new StringReader(httpResponse.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
         for (CSVRecord record : records) {
+            int casesToday = Integer.parseInt(record.get(record.size() - 1));
+            int casesYesterday = Integer.parseInt(record.get(record.size() - 2));
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province_State"));
             locationStats.setCountry(record.get("Country_Region"));
-            locationStats.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
-            System.out.println(locationStats);
+            locationStats.setLatestTotalCases(casesToday);
+            locationStats.setDifference(casesToday - casesYesterday);
             newStats.add(locationStats);
         }
         this.allStats = newStats;

@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Corona Virus Stats</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Product list</h1>
-
-    <table>
-        <tr>
-            <th>Country</th>
-            <th>State</th>
-            <th>Cases</th>
-        </tr>
-        <tr th:each="element : ${locationStats}">
-            <td th:text="${element.country}"></td>
-            <td th:text="${element.state}"></td>
-            <td th:text="${element.latestTotalCases}"></td>
-        </tr>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Covid Stats Tracker</h1>
+        <p class="lead">Tracker for daily case number updates</p>
+        <hr class="my-4">
+        <p>total deaths as of today:</p>
+        <h1 th:text="${totalCases}">over 9000</h1>
+        <p>new reported deaths today:</p>
+        <h1 th:text="${totalDifference}">over 9000</h1>
+        <a class="btn btn-primary btn-lg" href="https://covid.cdc.gov/covid-data-tracker/#cases_casesper100klast7days" role="button">Learn more</a>
+    </div>
+    <h1>States/Provinces</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Country</th>
+                <th>State</th>
+                <th>Total Cases</th>
+                <th>Difference Today</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="element : ${locationStats}">
+                <td th:text="${element.country}">N/A</td>
+                <td th:text="${element.state}">N/A</td>
+                <td th:text="${element.latestTotalCases}">0</td>
+                <td th:text="${element.difference}">0</td>
+            </tr>
+        </tbody>
     </table>
-
+</div>
 </body>
 </html>
