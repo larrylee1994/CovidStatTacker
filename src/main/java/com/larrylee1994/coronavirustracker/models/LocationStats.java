@@ -2,7 +2,7 @@ package com.larrylee1994.coronavirustracker.models;
 
 public class LocationStats {
     private String state;
-    private String country;
+    private String county;
     private int latestTotalCases;
     private int difference;
 
@@ -14,12 +14,12 @@ public class LocationStats {
         this.state = state;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCounty() {
+        return county;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     public int getLatestTotalCases() {
@@ -32,7 +32,7 @@ public class LocationStats {
 
     @Override
     public String toString() {
-        return country + " | " +
+        return county + " | " +
                 state + " | " +
                 latestTotalCases;
     }

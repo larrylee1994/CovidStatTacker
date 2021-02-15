@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">Covid Stats Tracker</h1>
+        <h1 class="display-4">US Covid Stats Tracker</h1>
         <p class="lead">Tracker for daily case number updates</p>
         <hr class="my-4">
         <p>total deaths as of today:</p>
@@ -21,16 +21,16 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>Country</th>
                 <th>State</th>
+                <th>County</th>
                 <th>Total Cases</th>
                 <th>Difference Today</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="element : ${locationStats}">
-                <td th:text="${element.country}">N/A</td>
                 <td th:text="${element.state}">N/A</td>
+                <td th:text="${element.county}">N/A</td>
                 <td th:text="${element.latestTotalCases}">0</td>
                 <td th:text="${element.difference}">0</td>
             </tr>

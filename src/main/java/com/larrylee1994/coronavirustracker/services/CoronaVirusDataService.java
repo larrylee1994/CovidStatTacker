@@ -44,7 +44,7 @@ public class CoronaVirusDataService {
             int casesYesterday = Integer.parseInt(record.get(record.size() - 2));
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province_State"));
-            locationStats.setCountry(record.get("Country_Region"));
+            locationStats.setCounty(record.get("Admin2"));
             locationStats.setLatestTotalCases(casesToday);
             locationStats.setDifference(casesToday - casesYesterday);
             newStats.add(locationStats);
