@@ -49,6 +49,10 @@ public class CoronaVirusDataService {
             locationStats.setDifference(casesToday - casesYesterday);
             newStats.add(locationStats);
         }
+
+        //TODO:make app Florida focused
+        //TODO:add cases and recovery
+
         this.allStats = newStats;
     }
 }
